@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>games</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #0b0c10;
+            background-image: 
+                radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.1) 2px, transparent 2px);
+            background-size: 40px 40px, 60px 60px;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 35px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .search-box {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 2px solid #ffffff;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            outline: none;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .filter-select {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 2px solid #ffffff;
+            color: #fff;
+            padding: 8px 30px;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+            text-align-last: center;
+            margin-bottom: 20px;
+        }
+
+        .sub-links {
+            font-size: 14px;
+            color: #a3aabf;
+        }
+        .sub-links a {
+            color: #ffffff;
+            text-decoration: underline;
+            margin: 0 5px;
+        }
+
+        .games-grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            position: relative;
+            height: 110px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background-size: cover;
+            background-position: center;
+            background-color: #15171e;
+        }
+
+        .game-card:hover {
+            transform: scale(1.03);
+            border-color: #00ffcc;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.55);
+            z-index: 1;
+        }
+
+        .game-card span {
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: -0.5px;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .star-icon {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            z-index: 2;
+        }
+        .game-card:hover .star-icon {
+            color: #00ffcc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1>games</h1>
+        <input type="text" class="search-box" id="search" placeholder="🔍 search" oninput="searchGames()">
+        
+        <select class="filter-select" id="category-filter" onchange="searchGames()">
+            <option value="all">all</option>
+            <option value="arcade">arcade</option>
+            <option value="driving">driving</option>
+            <option value="strategy">strategy</option>
+        </select>
+
+        <div class="sub-links">
+            <a href="#">homepage</a> • <a href="#">github</a>
+        </div>
+    </div>
+
+    <div class="games-grid" id="games-container">
+        
+        <a class="game-card" target="_blank" href="https://github.io" data-cat="arcade" data-tags="retro bowl football sports" style="background-image: url('https://unsplash.com');">
+            <div class="card-overlay"></div><span class="star-icon">☆</span><span>retro bowl</span>
+        </a>
+
+        <a class="game-card" target="_blank" href="https://github.io" data-cat="arcade" data-tags="slope ball 3d rolling" style="background-image: url('https://unsplash.com');">
+            <div class="card-overlay"></div><span class="star-icon">☆</span><span>slope</span>
+        </a>
+
+        <a class="game-card" target="_blank" href="https://github.io" data-cat="arcade" data-tags="tunnel rush 3d neon speed" style="background-image: url('https://unsplash.com');">
+            <div class="card-overlay"></div><span class="star-icon">☆</span><span>tunnel rush</span>
+        </a>
+
+        <a class="game-card" target="_blank" href="https://mit.edu" data-cat="arcade" data-tags="geometry dash rhythm block jump" style="background-image: url('https://unsplash.com');">
+            <div class="card-overlay"></div><span class="star-icon">☆</span><span>geometry dash</span>
+        </a>
+
+        <a class="game-card" target="_blank" href="https://github.io" data-cat="arcade" data-tags="run 3 space run gravity alien" style="background-image: url('https://unsplash.com');">
+            <div class="card-overlay"></div><span class="star-icon">☆</span><span>run 3</span>
+        </a>
+
+        <a class="game-card" target="_blank" href="https://snokido.com" data-cat="arcade" data-tags="subway surfers run train dash" style="background-image: url('https://unsplash.com');">
+            <div class="card-overlay"></div><span class="star-icon">☆</span><span>subway surfers</span>
+        </a>
+
+        <a class="game-card" target="_blank" href="https://1v1.lol" data-cat="strategy" data-tags="1v1 lol gun shooter fortnite building" style="background-image: url('https://unsplash.com');">
+            <div class="card-overlay"></div><span class="star-icon">☆</span><span>1v1.lol</span>
+        </a>
+
+        <a class="game-card" target="_blank" href="https://smashkarts.io" data-cat="driving" data-tags="smash karts multiplayer battle car driving" style="background-image: url('https://unsplash.com');">
+            <div class="game-card"></div><span class="star-icon">☆</span><span>smash karts</span>
+        </a>
+
+        <a class="game-card" target="_blank" href="https://github.io" data-cat="driving" data-tags="drift boss car racing turn" style="background-image: url('https://unsplash.com');">
+            <div class="card-overlay"></div><span class="star-icon">☆</span><span>drift boss</span>
+        </a>
+
+        <a class="game-card" target="_blank" href="https://hexanaut.io" data-cat="strategy" data-tags="hexanaut io territory snake multiplayer" style="background-image: url('https://unsplash.com');">
+            <div class="card-overlay"></div><span class="star-icon">☆</span><span>hexanaut.io</span>
+        </a>
+
+        <a class="game-card" target="_blank" href="https://dashnet.org" data-cat="strategy" data-tags="cookie clicker click casual simulation idle" style="background-image: url('https://unsplash.com');">
+            <div class="card-overlay"></div><span class="star-icon">☆</span><span>cookie clicker</span>
+        </a>
+
+        <a class="game-card" target="_blank" href="https://now.gg" data-cat="strategy" data-tags="roblox cloud mobile streaming" style="background-image: url('https://unsplash.com');">
+            <div class="card-overlay"></div><span class="star-icon">☆</span><span>roblox (cloud)</span>
+        </a>
+
+    </div>
+
+    <script>
+        function searchGames() {
+            const query = document.getElementById('search').value.toLowerCase();
+            const selectedCategory = document.getElementById('category-filter').value;
+            const cards = document.querySelectorAll('.game-card');
+            
+            cards.forEach(card => {
+                const name = card.querySelector('span:not(.star-icon)').innerText.toLowerCase();
+                const tags = card.getAttribute('data-tags').toLowerCase();
+                const category = card.getAttribute('data-cat');
+                
+                const matchesSearch = name.includes(query) || tags.includes(query);
+                const matchesCategory = (selectedCategory === "all") || (category === selectedCategory);
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = "flex";
+                } else {card.style.display = "none";}});}
